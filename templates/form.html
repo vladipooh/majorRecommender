@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>ระบบแนะนำสาขาเรียน</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view.css') }}" media="all">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+		<script type="text/javascript" src="{{ url_for('static', filename='view.js') }}"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</head>
+	<body id="main_body">
+		<div class="header"> <img src="{{ url_for('static', filename='bg2.jpg') }}" height="100%" width="auto"/> </div>
+		<div id="form_container">
+		
+			<h1><a>ระบบแนะนำสาขาเรียน</a></h1>
+			<form id="form_29414" class="appnitro"  method="post" action="">
+				<div class="form_description">
+					<h2>ระบบแนะนำสาขาเรียนด้วย 16 บุคลิกภาพและ Machine Learning</h2>
+				</div>						
+				<div id="profile" class="tab" style="display:">
+				<ul >
+					<li id="li_4" >
+						<label class="description" for="element_4">เพศ </label>
+						<div>
+						<select class="element select medium" id="element_4" name="element_4" required> 
+							<option value="" selected="selected"></option>
+							<option value="2" >ชาย</option>
+							<option value="1" >หญิง</option>
+							<option value="0" >LGBT</option>
+
+						</select>
+						</div> 
+					</li>		
+					<li id="li_5" >
+						<label class="description" for="element_5">อายุ </label>
+						<div>
+						<select class="element select medium" id="element_5" name="element_5" required> 
+							<option value="" selected="selected"></option>
+							<option value="3" >น้อยกว่า 23</option>
+							<option value="0" >23-28</option>
+							<option value="1" >29-34</option>
+							<option value="2" >35 ขึ้นไป</option>
+
+						</select>
+						</div> 
+					</li>		
+					<li id="li_6" >
+						<label class="description" for="element_6">ชั้นปีที่ </label>
+						<div>
+						<select class="element select medium" id="element_6" name="element_6" required> 
+							<option value="" selected="selected"></option>
+							<option value="1" >หนึ่ง</option>
+							<option value="3" >สอง</option>
+							<option value="4" >สาม</option>
+							<option value="2" >สี่</option>
+							<option value="0" >จบแล้ว</option>
+
+						</select>
+						</div> 
+					</li>		
+					<li id="li_1" >
+						<label class="description" for="element_1">เกรดเฉลี่ยปัจจุบัน</label>
+						<div>
+						<select class="element select medium" id="element_1" name="element_1" required> 
+							<option value="" selected="selected"></option>
+							<option value="0" >4.00</option>
+							<option value="2" >3.50-3.99</option>
+							<option value="1" >3.00-3.49</option>
+							<option value="4" >2.50-2.99</option>
+							<option value="3" >2.00-2.49</option>
+							<option value="5" >1.50-1.99</option>
+						</select>
+						</div> 
+					</li>		
+					<li id="li_8" >
+						<label class="description" for="element_8">การศึกษาปัจจุบัน </label>
+						<div>
+						<select class="element select medium" id="element_8" name="element_8" required> 
+							<option value="" selected="selected"></option>
+							<option value="2" >มัธยมสายวิทย์คณิต</option>
+							<option value="1" >มัธยมสายศิลป์</option>
+							<option value="5" >ปวช.</option>
+							<option value="3" >ปวส.</option>
+							<option value="4" >กศน.</option>
+							<option value="0" >ปริญญาตรี</option>
+						</select>
+						</div> 
+					</li>		
+					<li id="li_7" >
+						<label class="description" for="element_7">ภูมิลำเนา (ที่เกิด) </label>
+						<div>
+						<select class="element select medium" id="element_7" name="element_7" required> 
+							<option value="" selected="selected"></option>
+							<option value="2" >เหนือ</option>
+							<option value="3" >อีสาน</option>
+							<option value="0" >กลาง</option>
+							<option value="4" >ใต้</option>
+							<option value="1" >ตะวันออก</option>
+							<option value="5" >ตะวันตก</option>
+						</select>
+						</div> 
+					</li>		
+					<li id="li_9" >
+						<label class="description" for="element_9">เคยเข้าร่วมกิจกรรมกับมหาวิทยาลัยไหม </label>
+						<span>
+							<input id="element_9_1" name="element_9" class="element radio" type="radio" value="1" required />
+							<label class="choice" for="element_9_1">เคย</label>
+							<input id="element_9_2" name="element_9" class="element radio" type="radio" value="0" required />
+							<label class="choice" for="element_9_2">ไม่เคย</label>
+						</span> 
+					</li>		
+					<li class="section_break">
+						<h3>ปัจจัยที่มีผลต่อการเลือกสาขาที่เรียนตองการเรียน</h3>
+						<p></p>
+					</li>		
+					<li id="li_10" >
+						<label class="description" for="element_10">หลักสูตรตรงความสนใจและความถนัดของเรา </label>
+						<div>
+						<select class="element select medium" id="element_10" name="element_10" required> 
+							<option value="" selected="selected"></option>
+							<option value="0" >มาก</option>
+							<option value="2" >ปานกลาง</option>
+							<option value="1" >น้อย</option>
+						</select>
+						</div> 
+					</li>		
+					<li id="li_11" >
+						<label class="description" for="element_11">ตัดสินใจเลือกสาขาเรียนด้วยตนเอง คนรอบข้างเช่น พ่อ แม่ อาจารย์ เพื่อนไม่ได้มีส่วนช่วยตัดสินใจมากนัก </label>
+						<div>
+						<select class="element select medium" id="element_11" name="element_11" required> 
+							<option value="" selected="selected"></option>
+							<option value="0" >มาก</option>
+							<option value="2" >ปานกลาง</option>
+							<option value="1" >น้อย</option>
+
+						</select>
+						</div> 
+					</li>		
+					<li id="li_12" >
+						<label class="description" for="element_12">ความมีชื่อเสียงของสถาบัน อาจารย์ และสาขาที่เรียน </label>
+						<div>
+						<select class="element select medium" id="element_12" name="element_12" required> 
+							<option value="" selected="selected"></option>
+							<option value="0" >มาก</option>
+							<option value="2" >ปานกลาง</option>
+							<option value="1" >น้อย</option>
+						</select>
+						</div> 
+					</li>		
+					<li id="li_13" >
+						<label class="description" for="element_13">คุณภาพของการเรียนการสอน สื่อการสอนและบรรยากาศในการสอน </label>
+						<div>
+						<select class="element select medium" id="element_13" name="element_13" required> 
+							<option value="" selected="selected"></option>
+							<option value="0" >มาก</option>
+							<option value="2" >ปานกลาง</option>
+							<option value="1" >น้อย</option>
+						</select>
+						</div> 
+					</li>		
+					<li id="li_14" >
+						<label class="description" for="element_14">ตลาดงานในอนาคต จบมามีงานรับรองแน่นอน </label>
+						<div>
+						<select class="element select medium" id="element_14" name="element_14" required> 
+							<option value="" selected="selected"></option>
+							<option value="0" >มาก</option>
+							<option value="2" >ปานกลาง</option>
+							<option value="1" >น้อย</option>
+
+						</select>
+						</div> 
+					</li>		
+
+					<li class="buttons">
+						<input type="hidden" name="form_id" value="29414" />    
+						<input id="nextpart" onclick="nextpage()" type="button" name="submit" value="ต่อไป" />
+					</li>
+				</ul>
+				</div>
+				<div id="mbti" class="tab" style="display:none">
+					<div class="form_description">
+						<span><strong>แบบทดสอบบุคลิกภาพตามทฤษฎีของไมเออร์บริกส์</strong></span> <br/><br/>
+						<span>คำอธิบาย  : ในแต่ละข้อให้เลือกเพียงตัวเลือกเพียงตัวเลือกเดียวที่สอดคล้องกับตัวท่านมากที่สุด (แม้จะชอบทั้งคู่ก็ต้องเลือกเพียงตัวเลือกเดียวเท่านั้น)</span>
+					</div>	
+					<ul>
+						<li id="li_15" >
+							<label class="description" for="element_15">1.  ข้าพเจ้าชอบที่จะ </label>
+							<span>
+								<input id="element_15_1" name="element_15" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_15_1">แก้ปัญหาใหม่ ๆ ที่มีความสลับซับซ้อน</label>
+								<input id="element_15_2" name="element_15" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_15_2">เลือกทำงานที่เคยทำสำเร็จมาแล้ว</label>
+							</span> 
+						</li>	
+						<li id="li_16" >
+							<label class="description" for="element_16">2. ข้าพเจ้าชอบที่จะ </label>
+							<span>
+								<input id="element_16_1" name="element_16" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_16_1">ทำงานตามลำพังในที่สงบเงียบ</label>
+								<input id="element_16_2" name="element_16" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_16_2">อยู่ตรงที่งานกำลังดำเนินอยู่</label>
+							</span> 
+						</li>
+						<li id="li_17" >
+							<label class="description" for="element_17">3. ข้าพเจ้าชอบหัวหน้าที่ </label>
+							<span>
+								<input id="element_17_1" name="element_17" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_17_1">ได้สร้างและกำหนดเกณฑ์การทำงานและการตัดสินใจไว้ให้แล้ว</label>
+								<input id="element_17_2" name="element_17" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_17_2">ใส่ใจต่อความต้องการและช่วยเหลือลูกน้องรายบุคคล</label>
+							</span> 
+						</li>
+						<li id="li_18" >
+							<label class="description" for="element_18">4. เมื่อข้าพเจ้าทำงานเกี่ยวกับโครงการ ข้าพเจ้าต้องการ</label>
+							<span>
+								<input id="element_18_1" name="element_18" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_18_1">ทำให้เสร็จและปิดโครงการทันที</label>
+								<input id="element_18_2" name="element_18" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_18_2">ไม่รีบปิดโครงการเผื่อไว้หากต้องปรับปรุงเปลี่ยนแปลง</label>
+							</span> 
+						</li>
+						<li id="li_19" >
+							<label class="description" for="element_19">5. เมื่อต้องตัดสินใจ สิ่งสำคัญที่สุดที่ต้องคำนึงถึง คือ </label>
+							<span>
+								<input id="element_19_1" name="element_19" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_19_1">การคิดเชิงเหตุผล การมีข้อมูลและความคิดเห็น</label>
+								<input id="element_19_2" name="element_19" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_19_2">ความรู้สึกและค่านิยมของคน</label>
+							</span> 
+						</li>
+						<li id="li_20" >
+							<label class="description" for="element_20">6. เมื่อต้องทำงานโครงการ ข้าพเจ้าจะ</label>
+							<span>
+								<input id="element_20_1" name="element_20" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_20_1">คิดทบทวนหลายครั้งก่อนที่จะตัดสินใจว่าจะเริ่มดำเนินการอย่างไร</label>
+								<input id="element_20_2" name="element_20" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_20_2">เริ่มต้นลงมือทำงานทันที พร้อมกับคิดไปทำไปทีละขั้น</label>
+							</span> 
+						</li>
+						<li id="li_21" >
+							<label class="description" for="element_21">7. เมื่อต้องทำงานโครงการ ข้าพเจ้าชอบที่จะ</label>
+							<span>
+								<input id="element_21_1" name="element_21" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_21_1">คงวิธีการควบคุมให้มากที่สุดเท่าที่จะเป็นไปได้</label>
+								<input id="element_21_2" name="element_21" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_21_2">ตรวจสอบหาแนวทางต่าง ๆ ที่สามารถนำมาใช้ดำเนินการ</label>
+							</span> 
+						</li>
+						<li id="li_22" >
+							<label class="description" for="element_22">8. ในการทำงานของข้าพเจ้า ข้าพเจ้ามักจะ </label>
+							<span>
+								<input id="element_22_1" name="element_22" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_22_1">ทำพร้อมกันหลายโครงการ และพยายามหาความรู้จากแต่ละโครงการให้มากที่สุดเท่าที่จะทำได้</label>
+								<input id="element_22_2" name="element_22" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_22_2">เลือกทำโครงการที่มีความท้าทายมากที่สุดเพียงโครงการเดียวและจะทุ่มเทอย่างเต็มที่</label>
+							</span> 
+						</li>
+						<li id="li_23" >
+							<label class="description" for="element_23">9. ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_23_1" name="element_23" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_23_1">จัดทำรายการและแผนการทำงานก่อนที่จะเริ่มต้นทำงาน และไม่พอใจอย่างยิ่งถ้าถูกปรับเปลี่ยนไปจากแผนที่กำหนดไว้นี้</label>
+								<input id="element_23_2" name="element_23" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_23_2">หลีกเลี่ยงการทำแผนแต่จะปล่อยให้งานคืบหน้าไปเองขณะที่ทำงานนั้น</label>
+							</span> 
+						</li>
+						<li id="li_24" >
+							<label class="description" for="element_24">10. เมื่ออภิปรายปัญหากับเพื่อน  ข้าพเจ้าสามารถ</label>
+							<span>
+								<input id="element_24_1" name="element_24" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_24_1">มองเห็นภาพรวมได้โดยง่าย</label>
+								<input id="element_24_2" name="element_24" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_24_2">เข้าใจจุดใดจุดหนึ่งของสถานการณ์นั้นได้อย่างลึกซึ้งได้โดยง่าย</label>
+							</span> 
+						</li>
+						<li id="li_25" >
+							<label class="description" for="element_25">11. เมื่อมีเสียงกริ่งโทรศัพท์ดังขึ้นที่ทำงานหรือที่บ้าน ปกติข้าพเจ้า</label>
+							<span>
+								<input id="element_25_1" name="element_25" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_25_1">รู้สึกว่าเป็นเสียงที่รบกวนการทำงาน</label>
+								<input id="element_25_2" name="element_25" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_25_2">ไม่รังเกียจที่จะรับสายโทรศัพท์นั้น</label>
+							</span> 
+						</li>
+						<li id="li_26" >
+							<label class="description" for="element_26">12. คำใดที่อธิบายตรงกับตัวข้าพเจ้าได้ดีกว่ากัน ระหว่าง</label>
+							<span>
+								<input id="element_26_1" name="element_26" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_26_1">การวิเคราะห์ (analytical)</label>
+								<input id="element_26_2" name="element_26" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_26_2">ความเข้าอกเข้าใจ (empathetic)	</label>
+							</span> 
+						</li>
+						<li id="li_27" >
+							<label class="description" for="element_27">13. เมื่อข้าพเจ้าลงมือทำการบ้าน ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_27_1" name="element_27" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_27_1">ทำอย่างสม่ำเสมอและคงเส้นคงวา</label>
+								<input id="element_27_2" name="element_27" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_27_2">ทำอย่างเต็มที่แต่มีช่วงหยุดเป็นช่วง ๆ</label>
+							</span> 
+						</li>
+						<li id="li_28" >
+							<label class="description" for="element_28">14. เมื่อข้าพเจ้าเกิดได้ยินใครพูดถึงเรื่องใดเรื่องหนึ่ง ข้าพเจ้ามักจะพยายาม</label>
+							<span>
+								<input id="element_28_1" name="element_28" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_28_1">นำมาเกี่ยวข้องกับประสบการณ์เก่าของข้าพเจ้าและดูว่าคล้ายกันไหม</label>
+								<input id="element_28_2" name="element_28" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_28_2">วิเคราะห์และประเมินเนื้อหาที่ได้ยินนั้น</label>
+							</span> 
+						</li>
+						<li id="li_29" >
+							<label class="description" for="element_29">15. เมื่อข้าพเจ้าเกิดความคิดใหม่ขึ้น ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_29_1" name="element_29" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_29_1">ลงมือทำดู</label>
+								<input id="element_29_2" name="element_29" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_29_2">ลองพิจารณาใคร่ครวญความคิดใหม่นั้นอีกหลายครั้ง</label>
+							</span> 
+						</li>
+						<li id="li_30" >
+							<label class="description" for="element_30">16. เมื่อต้องทำงานโครงการ ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_30_1" name="element_30" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_30_1">ตีกรอบงานให้แคบลง เพื่อที่จะมองเห็นภาพได้ชัดเจนและตรงประเด็นยิ่งขึ้น</label>
+								<input id="element_30_2" name="element_30" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_30_2">ขยายขอบเขตงานออกไป เพื่อให้สามารถครอบคลุมประเด็นที่เกี่ยวข้องได้ครบ</label>
+							</span> 
+						</li>
+						<li id="li_31" >
+							<label class="description" for="element_31">17. เมื่อข้าพเจ้าอ่านอะไรก็แล้วแต่ ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_31_1" name="element_31" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_31_1">เพ่งความคิดไปยังข้อความที่เขียนนั้น</label>
+								<input id="element_31_2" name="element_31" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_31_2">อ่านแต่ละบรรทัด เพื่อหาคำสำคัญที่เกี่ยวข้องกับความคิดต่าง ๆ</label>
+							</span> 
+						</li>
+						<li id="li_32" >
+							<label class="description" for="element_32">18. เมื่อข้าพเจ้าจำเป็นต้องตัดสินใจโดยเร่งด่วน ข้าพเจ้ามัก</label>
+							<span>
+								<input id="element_32_1" name="element_32" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_32_1">รู้สึกอึดอัดใจและอยากได้ข้อมูลเพิ่มเติม</label>
+								<input id="element_32_2" name="element_32" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_32_2">สามารถตัดสินใจได้จากข้อมูลเท่าที่มีอยู่</label>
+							</span> 
+						</li>
+						<li id="li_33" >
+							<label class="description" for="element_33">19. ในการประชุม ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_33_1" name="element_33" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_33_1">ค่อย ๆ ประมวลความคิดตนเองในขณะที่พูดถึงเรื่องนั้น</label>
+								<input id="element_33_2" name="element_33" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_33_2">พูดออกไปก็ต่อเมื่อได้ใคร่ครวญความคิดเกี่ยวกับเรื่องนั้นอย่างดีแล้ว</label>
+							</span> 
+						</li>
+						<li id="li_34" >
+							<label class="description" for="element_34">20. ในการทำงาน ประเด็นที่ข้าพเจ้าชอบใช้เวลาค่อนข้างมากกว่าคือ</label>
+							<span>
+								<input id="element_34_1" name="element_34" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_34_1">ประเด็นที่เกี่ยวกับความคิด</label>
+								<input id="element_34_2" name="element_34" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_34_2">ประเด็นที่เกี่ยวกับคน</label>
+							</span> 
+						</li>
+						<li id="li_35" >
+							<label class="description" for="element_35">21. ในการประชุม ข้าพเจ้ามักถูกรบกวนให้รำคาญใจกับคนที่</label>
+							<span>
+								<input id="element_35_1" name="element_35" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_35_1">ชอบเสนอความคิดมากมายที่ยังขาดความชัดเจน</label>
+								<input id="element_35_2" name="element_35" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_35_2">ทำให้เสียเวลาที่ประชุมไปกับการพูดถึงรายละเอียดของการทำงานอย่างถี่ยิบ</label>
+							</span> 
+						</li>
+						<li id="li_36" >
+							<label class="description" for="element_36">22. ข้าพเจ้าชอบเป็น</label>
+							<span>
+								<input id="element_36_1" name="element_36" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_36_1">คนตื่นเช้า</label>
+								<input id="element_36_2" name="element_36" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_36_2">คนนอนดึก</label>
+							</span> 
+						</li>
+						<li id="li_37" >
+							<label class="description" for="element_37">23. รูปแบบการเตรียมพร้อมก่อนเข้าร่วมประชุมของข้าพเจ้า คือ</label>
+							<span>
+								<input id="element_37_1" name="element_37" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_37_1">อยากเข้าประชุมและได้แสดงความคิดเห็นต่อที่ประชุม</label>
+								<input id="element_37_2" name="element_37" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_37_2">เตรียมตัวพร้อมเต็มที่ และขีดเขียนวาระหัวข้อการประชุมนั้นออกมา</label>
+							</span> 
+						</li>
+						<li id="li_38" >
+							<label class="description" for="element_38">24. ในที่ประชุมข้าพเจ้าชอบคนที่</label>
+							<span>
+								<input id="element_38_1" name="element_38" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_38_1">สามารถแสดงออกทางอารมณ์ได้ดี</label>
+								<input id="element_38_2" name="element_38" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_38_2">ให้ความสำคัญกับงาน</label>
+							</span> 
+						</li>
+						<li id="li_39" >
+							<label class="description" for="element_39">25. ข้าพเจ้าชอบการทำงานกับหน่วยงานที่ </label>
+							<span>
+								<input id="element_39_1" name="element_39" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_39_1">กระตุ้นการใช้ปัญญาในการทำงานให้กับข้าพเจ้า</label>
+								<input id="element_39_2" name="element_39" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_39_2">ข้าพเจ้าผูกพันกับเป้าหมายและพันธกิจ</label>
+							</span> 
+						</li>
+						<li id="li_40" >
+							<label class="description" for="element_40">26. ช่วงสุดสัปดาห์ ข้าพเจ้ามักจะ</label>
+							<span>
+								<input id="element_40_1" name="element_40" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_40_1">วางแผนล่วงหน้าว่าจะทำอะไรบ้าง</label>
+								<input id="element_40_2" name="element_40" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_40_2">ไปดูว่ามีอะไรเกิดขึ้นบ้าง แล้วจึงตัดสินใจเข้าร่วมตามนั้น</label>
+							</span> 
+						</li>
+						<li id="li_41" >
+							<label class="description" for="element_41">27. ข้าพเจ้าเป็นคนประเภท</label>
+							<span>
+								<input id="element_41_1" name="element_41" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_41_1">ชอบออกไปพบปะผู้คน</label>
+								<input id="element_41_2" name="element_41" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_41_2">ชอบใช้ความคิดไตร่ตรอง</label>
+							</span> 
+						</li>
+						<li id="li_42" >
+							<label class="description" for="element_42">28. ข้าพเจ้าชอบทำงานกับหัวหน้าที่</label>
+							<span>
+								<input id="element_42_1" name="element_42" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_42_1">เต็มไปด้วยความคิดใหม่ ๆ</label>
+								<input id="element_42_2" name="element_42" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_42_2">เป็นนักปฏิบัติที่ดี</label>
+							</span> 
+						</li>
+						<li id="li_43" >
+							<label class="description" for="element_43">ตั้งแต่ข้อ 29 –32 แต่ละข้อมี 2 ข้อความให้เลือกเพียงอย่างเดียว</label>
+							<label class="description" for="element_43">29. </label>
+							<span>
+								<input id="element_43_1" name="element_43" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_43_1">สังคม (social)</label>
+								<input id="element_43_2" name="element_43" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_43_2">เป็นทฤษฎี (theoretical)</label>
+							</span> 
+						</li>
+						<li id="li_44" >
+							<label class="description" for="element_44">30. </label>
+							<span>
+								<input id="element_44_1" name="element_44" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_44_1">ความเป็นเจ้าความคิด (ingenuity)</label>
+								<input id="element_44_2" name="element_44" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_44_2">ความเป็นนักปฏิบัติ (practicality)</label>
+							</span> 
+						</li>
+						<li id="li_45" >
+							<label class="description" for="element_45">31. </label>
+							<span>
+								<input id="element_45_1" name="element_45" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_45_1">การจัดรูปแบบ (organized)</label>
+								<input id="element_45_2" name="element_45" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_45_2">การยืดหยุ่นได้ (adaptable)</label>
+							</span> 
+						</li>
+						<li id="li_46" >
+							<label class="description" for="element_46">32. </label>
+							<span>
+								<input id="element_46_1" name="element_46" class="element radio" type="radio" value="-1" required />
+								<label class="choice" for="element_46_1">คล่องแคล่ว (active)</label>
+								<input id="element_46_2" name="element_46" class="element radio" type="radio" value="1" required />
+								<label class="choice" for="element_46_2">การมีสมาธิ (concentration)</label>
+							</span> 
+						</li>
+						<li class="buttons"> 
+						<input id="btnback" class="button_text" onclick="prepage()" type="button" name="btnback" value="ย้อนกลับ" />					
+						<input id="sendform" class="button_text" onclick="mbtiCal()" type="button" name="submit" value="ส่งคำตอบ" />
+						</li>
+					</ul>
+				</div>
+				<div id="resultpage" class="tab" style="display:none">
+				<br/>
+				<br/>
+				<h3>สาขาเรียนที่แนะนำสำหรับคุณคือ </h3>
+				<h2 id="resultMajor">คณะหมูกรอบ</h2> <br/>
+				<p id="resultDesc">ประกอบไปด้วย<br/>หมูกรอบหั่นชิ้นพอคำ 1-2 ถ้วย
+						<br/>ก้านคะน้า หั่นท่อนยาว 2 นิ้ว 1 ถ้วย
+						<br/>ใบคะน้าหั่นชิ้นใหญ่ 2 ถ้วย
+						<br/>กระเทียมบุบหยาบ 1 ช้อนโต๊ะ
+						<br/>พริกขี้หนูแดงบุบหั่นแฉลบ 5-6 เม็ด
+						<br/>น้ำมันหอย 2 ช้อนโต๊ะ
+						<br/>เต้าเจียวดำ 1 ช้อนโต๊ะ
+						<br/>น้ำปลา 1 ช้อนชา
+						<br/>น้ำตาลทราย 1 – 2 ช้อนชา
+						<br/>พริกไทยป่น 1 – 4 ช้อนชา
+						<br/>น้ำเปล่า 2 – 3 ช้อนโต๊ะ
+						<br/>น้ำมันพืช 3 ช้อนโต๊ะ<br/><br/><br/><br/><br/>
+				</p>
+				</div>
+			</form>	
+			<div id="footer">
+				Create by <a href="#">Phuwadol Viroonluecha</a>
+			</div>
+		</div>
+		<script>
+				
+		var features = [];
+		var mbti = [];
+		var mbti2;
+		var mbtiType = ["ENFJ","ENFP","ENTJ","ENTP","ESFJ","ESFP","ESTJ","ESTP","INFJ","INFP","INTJ","INTP","ISFJ","ISFP","ISTJ","ISTP"];
+		var predicts;
+		
+		var mbti_desc = [["ศิลปศาสตร์และมนุษยศาสตร์", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ ศิลปกรรมศาสตร์ ดุริยางคศาสตร์ มนุษยศาสตร์ ศาสนศาสตร์และเทวศาสตร์ ประวัติศาสตร์และโบราณคดี ปรัชญาและจริยศาสตร์ ภาษาศาสตร์ เป็นต้น"],
+						["การจัดการ การบริหารธุรกิจ และนิติศาสตร์", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ การบัญชีและภาษี การเงินและการธนาคาร การประกัน การจัดการและการบริหาร การตลาดและการโฆษณา การเลขานุการ ธุรกิจค้าส่งและค้าปลีก นิติศาสตร์ เป็นต้น"],
+						["ครุศาสตร์และศึกษาศาสตร์", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ วิทยาศาสตร์การศึกษา การปฐมวัย การสอนทั่วไป การสอนเฉพาะทาง และสาขาอื่น ๆ ที่เกี่ยวข้องกับการสอน เป็นต้น 	"],
+						["วิศวกรรมศาสตร์และอุตสาหกรรม", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ เคมีอุตสาหกรรม อุตสาหกรรมสิ่งแวดล้อม ไฟฟ้าและพลังงาน อิเล็กทรอนิกส์และระบบอัตโนมัติ เครื่องกล โลหการ อุตสาหกรรมยานยนตร์ เรือ เครื่องบิน วิทยาศาสตร์อาหาร วัสดุศาสตร์ อุตสาหกรรมสิ่งทอ อุตสาหกรรมเหมืองแร่และการสกัด อุตสาหกรรมโยธาและการวางผังเมือง อุตสาหกรรมการเกษตร เป็นต้น"],
+						["วิทยาศาสตร์การแพทย์และสุขภาพ", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ วิทยาศาสตร์การแพทย์ สาธารณสุขศาสตร์ พยาบาลศาสตร์ เทคนิคการแพทย์ รังสีเทคนิค กายภาพบำบัด ทันตแพทยศาสตร์ แพทยศาสตร์ เภสัชศาสตร์ เป็นต้น"],
+						["คอมพิวเตอร์และเทคโนโลยีสารสนเทศ", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ วิทยาการคอมพิวเตอร์ เทคโนโลยีสารสนเทศ เครือข่ายคอมพิวเตอร์ ฐานข้อมูลคอมพิวเตอร์ วิศวกรรมซอฟต์แวร์ พัฒนาโปรแกรมและแอพลิเคชั่น การวิเคราะห์ข้อมูล วิทยาการข้อมูล เป็นต้น"],
+						["วิทยาศาสตร์และคณิตศาสตร์", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ ชีววิทยา ชีวเคมี วิทยาศาสตร์สิ่งแวดล้อมสิ่งแวดล้อมธรรมชาติและสัตว์ป่า เคมี ธรณีวิทยา ฟิสิกส์ คณิศาสตร์ สถิติศาสตร์ เป็นต้น"],
+						["สังคมศาสตร์ นิเทศศาสตร์ วารสารศาสตร์และสารสนเทศศาสตร์", "ประกอบไปด้วยแขนงสาขาวิชาย่อย ได้แก่ เศรษฐศาสตร์ รัฐศาสตร์ จิตวิทยา สังคมศาสตร์และพฤติกรรมศาสตร์ วารสารศาสตร์ บรรณารักษศาสตร์และสารสนเทศ เป็นต้น"]];
+		
+		function mbtiCal() {
+			mbti = [];
+			
+			var ie, sn, tf, jp;
+			
+			ie = parseInt(getQId('input[name="element_16"]:checked')) + parseInt(getQId('input[name="element_20"]:checked')) + parseInt(getQId('input[name="element_25"]:checked')) + parseInt(getQId('input[name="element_29"]:checked')) + parseInt(getQId('input[name="element_33"]:checked')) + parseInt(getQId('input[name="element_36"]:checked')) + parseInt(getQId('input[name="element_41"]:checked')) + parseInt(getQId('input[name="element_46"]:checked'));
+			
+			sn = parseInt(getQId('input[name="element_15"]:checked')) + parseInt(getQId('input[name="element_24"]:checked')) + parseInt(getQId('input[name="element_27"]:checked')) + parseInt(getQId('input[name="element_30"]:checked')) + parseInt(getQId('input[name="element_31"]:checked')) + parseInt(getQId('input[name="element_35"]:checked')) + parseInt(getQId('input[name="element_42"]:checked')) + parseInt(getQId('input[name="element_44"]:checked'));
+			
+			tf = parseInt(getQId('input[name="element_17"]:checked')) + parseInt(getQId('input[name="element_19"]:checked')) + parseInt(getQId('input[name="element_26"]:checked')) + parseInt(getQId('input[name="element_28"]:checked')) + parseInt(getQId('input[name="element_34"]:checked')) + parseInt(getQId('input[name="element_38"]:checked')) + parseInt(getQId('input[name="element_39"]:checked')) + parseInt(getQId('input[name="element_43"]:checked'));
+			
+			jp = parseInt(getQId('input[name="element_18"]:checked')) + parseInt(getQId('input[name="element_21"]:checked')) + parseInt(getQId('input[name="element_22"]:checked')) + parseInt(getQId('input[name="element_23"]:checked')) + parseInt(getQId('input[name="element_32"]:checked')) + parseInt(getQId('input[name="element_37"]:checked')) + parseInt(getQId('input[name="element_40"]:checked')) + parseInt(getQId('input[name="element_45"]:checked'));
+			
+			
+			// Cal I-E
+			if (ie > 0) {
+				mbti.push('I');
+			}
+			else if (ie < 0) {
+				mbti.push('E');
+			}
+			else {
+				if (parseInt(getQId('input[name="element_25"]:checked') == 1)){
+					mbti.push('I');
+				}
+				else {
+				mbti.push('E');
+				}
+			}
+			
+			// Cal S-N
+			if (sn > 0) {
+				mbti.push('S');
+			}
+			else if (sn < 0) {
+				mbti.push('N');
+			}
+			else {
+				if (parseInt(getQId('input[name="element_30"]:checked') == 1)){
+					mbti.push('S');
+				}
+				else {
+				mbti.push('N');
+				}
+			}
+			
+			// Cal T-F
+			if (tf > 0) {
+				mbti.push('T');
+			}
+			else if (tf < 0) {
+				mbti.push('F');
+			}
+			else {
+				if (parseInt(getQId('input[name="element_38"]:checked') == 1)){
+					mbti.push('T');
+				}
+				else {
+				mbti.push('F');
+				}
+			}
+			
+			// Cal J-P
+			if (jp > 0) {
+				mbti.push('J');
+			}
+			else if (jp < 0) {
+				mbti.push('P');
+			}
+			else {
+				if (parseInt(getQId('input[name="element_37"]:checked') == 1)){
+					mbti.push('J');
+				}
+				else {
+				mbti.push('P');
+				}
+			}
+			
+			mbti2 = mbti.join('');
+			mbtiIndex = mbtiType.indexOf(mbti2);
+			features.push(mbtiIndex);
+			console.log(ie+' '+sn+' '+tf+' '+jp);
+			console.log(mbti2);
+			console.log(mbtiIndex);
+			console.log(features);
+			
+			var arr = "{\"feature_array\":[" + String(features) +"]}";
+
+			var settings = {
+			  "async": true,
+			  "crossDomain": true,
+			  "url": "http://127.0.0.1:5000/predict",
+			  "method": "POST",
+			  "headers": {
+				"Content-Type": "application/json",
+				"cache-control": "no-cache",
+			  },
+			  "processData": false,
+			  "data": arr
+			}
+
+			$.ajax(settings).done(function (response) {
+				predicts = parseInt(response.predictions);
+				document.getElementById("resultMajor").innerHTML = mbti_desc[predicts][0];
+				document.getElementById("resultDesc").innerHTML = mbti_desc[predicts][1];
+			});
+			
+			document.getElementById("mbti").style.display = "none";
+			document.getElementById("resultpage").style.display = "";
+			
+
+		}
+		
+		function submitform() {
+
+			features.push(parseInt(getId('element_4')));
+			features.push(parseInt(getId('element_5')));
+			features.push(parseInt(getId('element_6')));
+			features.push(parseInt(getId('element_1')));
+			features.push(parseInt(getId('element_8')));
+			features.push(parseInt(getId('element_7')));
+			features.push(parseInt(getQId('input[name="element_9"]:checked')));
+			features.push(parseInt(getId('element_10')));
+			features.push(parseInt(getId('element_11')));
+			features.push(parseInt(getId('element_12')));
+			features.push(parseInt(getId('element_13')));
+			features.push(parseInt(getId('element_14')));
+			console.log(features);
+			$(window).scrollTop(0);
+		}
+		
+		function getQId(id) {
+			var item = document.querySelector(id).value;
+			return(item);
+		}
+		
+		function getId(id) {
+			var item = document.getElementById(id).value;
+			return(item);
+		}
+		
+		function nextpage() {
+			$(window).scrollTop(0);
+			document.getElementById("profile").style.display = "none";
+			document.getElementById("mbti").style.display = "";
+			submitform();
+		}
+		
+		function prepage() {
+			$(window).scrollTop(0);
+			document.getElementById("profile").style.display = "";
+			document.getElementById("mbti").style.display = "none";
+		}
+		
+		
+		</script>
+	</body>
+</html>

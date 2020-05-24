@@ -15,9 +15,9 @@ model = pickle.load(open("mbti.pkl", "rb"))
 @app.route('/')
 
 def home():
-   return render_template('home.html')
+   return render_template('form.html')
 
-@app.route('/test', methods=['POST'])
+@app.route('/test', methods=['GET','POST'])
 def predict():
         url = "http://127.0.0.1:5000/predict"
         data = {"feature_array": [1.0, 2.0, 1.0, 1.0, 3.0, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 4.0]}
