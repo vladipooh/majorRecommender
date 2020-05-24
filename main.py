@@ -38,4 +38,4 @@ def index():
     # returning the response object as json
     return flask.jsonify(response)
 
-app.run(debug=True)
+app.run()
