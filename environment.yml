@@ -1,0 +1,10 @@
+name: najorrec #Environment name
+dependencies:
+  - python=3.6
+  - pip:
+    - flask
+    - requests
+    - datetime
+    - functools
+    - flask_cors
+    - gunicorn  # for app deployment

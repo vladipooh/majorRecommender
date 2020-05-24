@@ -1,4 +1,6 @@
-pickle
 flask
 requests
+datetime
+functools
 flask_cors
+gunicorn 
