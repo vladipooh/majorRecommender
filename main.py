@@ -19,7 +19,7 @@ def home():
 
 @app.route('/test', methods=['GET','POST'])
 def predict():
-        url = "http://127.0.0.1:5000/predict"
+        url = "/predict"
         data = {"feature_array": [1.0, 2.0, 1.0, 1.0, 3.0, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 4.0]}
         r = requests.post(url, json=data)
         return r.text
