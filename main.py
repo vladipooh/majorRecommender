@@ -5,10 +5,10 @@ import requests
 from datetime import timedelta
 from flask import make_response, request, current_app, render_template
 from functools import update_wrapper
-from flask_cors import CORS
+# from flask_cors import CORS
 
 app = flask.Flask(__name__)
-cors = CORS(app)
+# cors = CORS(app)
 
 # loading my model
 # model = pickle.load(open("mbti.pkl", "rb"))
