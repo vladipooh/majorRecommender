@@ -1,5 +1,9 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
+import pickle
+import requests
+from datetime import timedelta
+from functools import update_wrapper
 
 app = Flask(__name__)
 
@@ -15,11 +19,26 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
+@app.route('/test', methods=['GET','POST'])
+def predict():
+    url = "/predict"
+    data = {"feature_array": [1.0, 2.0, 1.0, 1.0, 3.0, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 4.0]}
+    r = requests.post(url, json=data)
+    return r.text
 
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
+# defining a route for only post requests
+@app.route('/predict', methods=['POST'])
+def index():
+    # getting an array of features from the post request's body
+    feature_array = request.get_json()['feature_array']
+
+    # creating a response object
+    # storing the model's prediction in the object
+    response = {}
+    response['predictions'] = model.predict([feature_array]).tolist()
+
+    # returning the response object as json
+    return flask.jsonify(response)
 
 
 ###
