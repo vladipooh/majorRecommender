@@ -1,4 +1,5 @@
 import os
+import flask
 from flask import Flask, render_template, request, redirect, url_for
 import pickle
 import requests
@@ -9,6 +10,8 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
+# loading my model
+model = pickle.load(open("mbti.pkl", "rb"))
 
 ###
 # Routing for your application.
@@ -17,11 +20,11 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 @app.route('/')
 def home():
     """Render website's home page."""
-    return render_template('main.html')
+    return render_template('form.html')
 
 @app.route('/test', methods=['GET','POST'])
 def predict():
-    url = "/predict"
+    url = "http://127.0.0.1:5000/predict"
     data = {"feature_array": [1.0, 2.0, 1.0, 1.0, 3.0, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 4.0]}
     r = requests.post(url, json=data)
     return r.text
