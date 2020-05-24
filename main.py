@@ -22,7 +22,7 @@ def home():
     """Render website's home page."""
     return render_template('main.html')
 
-@app.route('/test', methods=['GET','POST'])
+@app.route('/test/', methods=['GET','POST'])
 def predict():
     url = "http://127.0.0.1:5000/predict"
     data = {"feature_array": [1.0, 2.0, 1.0, 1.0, 3.0, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 4.0]}
@@ -30,7 +30,7 @@ def predict():
     return r.text
 
 # defining a route for only post requests
-@app.route('/predict', methods=['POST'])
+@app.route('/predict/', methods=['POST'])
 def index():
     # getting an array of features from the post request's body
     feature_array = request.get_json()['feature_array']
