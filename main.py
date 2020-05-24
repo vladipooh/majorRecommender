@@ -20,7 +20,7 @@ model = pickle.load(open("mbti.pkl", "rb"))
 @app.route('/')
 def home():
     """Render website's home page."""
-    return render_template('form.html')
+    return render_template('main.html')
 
 @app.route('/test', methods=['GET','POST'])
 def predict():
